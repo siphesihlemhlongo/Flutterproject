@@ -5,11 +5,6 @@ import 'package:flutter/material.dart';
 import 'ResetPassword.dart';
 import 'SignUp.dart';
 
-
-
-
-
-
 class MyLogin2 extends StatefulWidget{
   const MyLogin2 ({super.key});
 

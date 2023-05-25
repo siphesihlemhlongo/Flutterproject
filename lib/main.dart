@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practiceproject/home.dart';
 import 'package:practiceproject/login2.dart';
-//import 'package:practiceproject/videoplayer.dart';
-
 
 void main() {
   runApp( const MyApp());

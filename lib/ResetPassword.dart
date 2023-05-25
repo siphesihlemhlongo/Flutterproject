@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'ResetForm.dart';
+import 'reset_form.dart';
 
 
 class ResetPassword extends StatelessWidget {

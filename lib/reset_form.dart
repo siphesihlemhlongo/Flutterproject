@@ -13,11 +13,11 @@ class ResetForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
         decoration: InputDecoration(
-            //hintText: (TextStyle(color: textFieldColor)),
-        border: UnderlineInputBorder(
-            borderSide: BorderSide(color: kPrimaryColor)
-        )
+          //hintText: (TextStyle(color: textFieldColor)),
+            border: UnderlineInputBorder(
+                borderSide: BorderSide(color: kPrimaryColor)
+            )
 
-        ) );
+        ));
   }
 }

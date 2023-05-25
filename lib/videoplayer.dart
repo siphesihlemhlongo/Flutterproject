@@ -2,43 +2,54 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
 
-class VideoPlayer extends StatefulWidget {
+class VideoPlayerWidget extends StatefulWidget {
 
-  const VideoPlayer(VideoPlayerController controller, {super.key});
-
-//const VideoPlayer({
-//required Key key,
-//}) //:super (key: key);
+  const VideoPlayerWidget({Key? key}) :super(key: key);
 
   @override
-  State<VideoPlayer> createState() => _VideoPlayer();
+  State<VideoPlayerWidget> createState() => _VideoPlayerWidgetState();
 
   }
 
-class _VideoPlayer extends State<VideoPlayer> {
+class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
 
- late final VideoPlayerController controller;
+ late final VideoPlayerController _controller;
 
  @override
- void initState(){
+ void initState() {
    super.initState();
+   _controller = VideoPlayerController.network(
+       'https://www.youtube.com/watch?v=obPBo5CXExk');
+   _controller.initialize().then((_) {
+     setState(() {
+       _controller.play();
+       _controller.setLooping(true);
+     });
+   });
  }
+ @override
+ void dispose() {
+   _controller.dispose();
+   super.dispose();
+ }
+
+
   @override
-  Widget build(BuildContext context) =>
-      controller.value.initialized
-      ? Container(alignment: Alignment.topCenter,child: buildVideo())
-      : const SizedBox(
-        height: 300,
-        child: Center(child: CircularProgressIndicator()),
-      );
- Widget buildVideo()=> buildVideoPlayer();
- Widget buildVideoPlayer()=> VideoPlayer(controller);
-
+  Widget build(BuildContext context) {
+    return _controller.value.isInitialized
+        ? Container(alignment: Alignment.topCenter, child: AspectRatio(
+      aspectRatio: _controller.value.aspectRatio,
+      child: VideoPlayer(_controller),
+    ),
+    )
+        : const SizedBox(
+      height: 300,
+      child: Center(child: CircularProgressIndicator()),
+    );
   }
-
-class VideoPlayerController {
-  //bool videoPlayer =false;
-  get value => null;
 }
+
+
 
